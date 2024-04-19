@@ -58,6 +58,12 @@
 			<version>2.2.222</version>
 			<scope>runtime</scope>
 		</dependency>
+		<dependency>
+			<groupId>net.sourceforge.plantuml</groupId>
+			<artifactId>plantuml</artifactId>
+			<version>1.2023.5</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>

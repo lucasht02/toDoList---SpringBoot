@@ -1,0 +1,19 @@
+@startuml
+!define C4Component
+!includeurl https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+LAYOUT_TOP_DOWN()
+
+title To-Do List Application - Component Diagram
+
+Container(springbootApp, "Spring Boot Application", "Java/Spring Boot", "Sistema de To Do List para gerenciamento de tasks")
+
+ComponentDb(taskDb, "Task Database", "H2 Database", "Aramzena informações das tasks.")
+
+Component(taskService, "Task Service", "Spring Component", "Operações CRUD.")
+Component(taskController, "Task Controller", "Spring REST Controller", "Controla requisições HTTP.")
+
+Rel(taskController, taskService, "Uses")
+Rel(taskService, taskDb, "Reads/Writes")
+
+@enduml
