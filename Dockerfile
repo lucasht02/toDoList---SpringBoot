@@ -2,7 +2,7 @@ FROM ubuntu:latest AS build
 
 RUN apt-get update
 RUN apt-get install openjdk-21-jdk -y
-COPY roteiro1 .
+COPY roteiro01 .
 
 RUN apt-get install maven -y
 RUN mvn clean install
