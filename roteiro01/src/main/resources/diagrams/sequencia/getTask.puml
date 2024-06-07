@@ -1,0 +1,15 @@
+@startuml
+actor User
+User -> TaskController: GET /task
+activate TaskController
+TaskController -> TaskService: listAllTasks()
+activate TaskService
+TaskService -> TaskRepository: findAll()
+activate TaskRepository
+TaskRepository --> TaskService: List<Task>
+deactivate TaskRepository
+TaskService --> TaskController: List<Task>
+deactivate TaskService
+TaskController --> User: ResponseEntity<List<Task>>
+deactivate TaskController
+@enduml

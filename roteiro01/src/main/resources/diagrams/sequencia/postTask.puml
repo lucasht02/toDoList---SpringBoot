@@ -1,0 +1,15 @@
+@startuml
+actor User
+User -> TaskController: POST /task
+activate TaskController
+TaskController -> TaskService: saveTask(Task)
+activate TaskService
+TaskService -> TaskRepository: save(Task)
+activate TaskRepository
+TaskRepository --> TaskService: Task
+deactivate TaskRepository
+TaskService --> TaskController: Task
+deactivate TaskService
+TaskController --> User: ResponseEntity<Task>
+deactivate TaskController
+@enduml

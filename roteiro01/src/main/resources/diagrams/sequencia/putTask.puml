@@ -1,0 +1,24 @@
+@startuml
+actor User
+User -> TaskController: PUT /task/{id}
+activate TaskController
+TaskController -> TaskService: getTaskById(id)
+activate TaskService
+TaskService -> TaskRepository: findById(id)
+activate TaskRepository
+TaskRepository --> TaskService: Optional<Task>
+deactivate TaskRepository
+alt if Task exists
+    TaskService -> TaskService: updateTask(existingTask, updatedTask)
+    TaskService --> TaskController: Task
+else
+    TaskService --> TaskController: Optional.empty()
+end
+deactivate TaskService
+alt if Task exists
+    TaskController --> User: ResponseEntity<Task>
+else
+    TaskController --> User: ResponseEntity<NOT_FOUND>
+end
+deactivate TaskController
+@enduml
