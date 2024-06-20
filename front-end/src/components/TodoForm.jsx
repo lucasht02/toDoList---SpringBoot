@@ -1,12 +1,25 @@
 import React from "react";
 
-const TodoForm = () => {
+const TodoForm = ({addTodo}) => {
+  const [value, setValue] = React.useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (value) {
+      // adicionar tarefa
+      addTodo(value);
+      // limpar formulário apos envio
+      setValue("");
+    }
+  };
+
   return (
-    <form >
+    <form onSubmit={handleSubmit}>
       <input
         type="text"
-        className="todo-input"
         placeholder="Qual sua nova tarefa?"
+        value={value} onChange={(e) =>
+            setValue(e.target.value)}
       />
       <button type="submit" className="border py-1 px-3 rounded">
         Adicionar nova tarefa
