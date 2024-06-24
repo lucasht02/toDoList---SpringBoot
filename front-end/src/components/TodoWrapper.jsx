@@ -31,10 +31,10 @@ const TodoWrapper = () => {
   }, []);
 
   return (
-    <div className="space-y-3">
+    <div className="space-y-3 m-auto border p-6 rounded-md bg-white shadow">
       <h1 className="text-xl font-semibold">Lista de Tarefas</h1>
       <TodoForm onAdd={add} />
-      <div>
+      <div className="space-y-3">
         {todos.map((item) => (
           <TodoList
             key={item.id}

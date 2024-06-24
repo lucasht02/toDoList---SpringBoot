@@ -21,14 +21,15 @@ const TodoForm = ({ onAdd }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="space-x-3">
       <input
         type="text"
         placeholder="Qual sua nova tarefa?"
         value={value} 
         onChange={(e) => setValue(e.target.value)}
+        className="py-1 px-4"
       />
-      <button type="submit" className="border py-1 px-3 rounded">
+      <button type="submit" className="border py-2 px-4 rounded bg-sky-500 text-white">
         Adicionar nova tarefa
       </button>
     </form>

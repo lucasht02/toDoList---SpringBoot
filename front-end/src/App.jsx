@@ -2,8 +2,9 @@ import TodoWrapper from "./components/TodoWrapper"
 
 function App() {
 
+
   return (
-    <div className="m-2">
+    <div className="mt-8 flex">
       <TodoWrapper />
     </div>
   )

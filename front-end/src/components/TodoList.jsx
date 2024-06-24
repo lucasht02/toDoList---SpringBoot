@@ -23,8 +23,8 @@ const TodoList = ({description, id, completed, onDelete}) => {
     <div className='flex space-x-3'>
       <p className={completed ? 'text-slate-400' : ''}>{description}</p>
       <div className='flex items-center gap-2'>
-        {completed ? <></> : <Check className='size-5' onClick={() => handleComplete(id)}/> }
-        <Trash className='size-4' onClick={() => handleDelete(id)}/>
+        {completed ? <></> : <Check className='size-5 cursor-pointer' onClick={() => handleComplete(id)}/> }
+        <Trash className='size-4 cursor-pointer' onClick={() => handleDelete(id)}/>
       </div>
     </div>
   )
