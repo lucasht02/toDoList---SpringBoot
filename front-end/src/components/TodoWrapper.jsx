@@ -5,33 +5,46 @@ import TodoList from "./TodoList";
 const TodoWrapper = () => {
   const [todos, setTodos] = React.useState([]);
 
-  const addTodo = (todo) => {
-    setTodos([...todos, { id: uuidv4(), task: description, completed: false }]);
+  const fetchTask = async () => {
+    try {
+      const results = await fetch("http://localhost:8080/api/task", {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+      });
+      const data = await results.json();
+      setTodos(data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
-  const fetchTask = () => {
-    try {
-      const results = fetch("https://todolist-springboot-nbks.onrender.com/api/task", {
-        method: 'GET',
-        headers: {'Content-Type': 'application/json',}
-      })
-      setTodos(results)
-    } catch (error) {
-      console.log(error)
-    }
+  const add = () => {
+    fetchTask();
   }
 
+  const deleteTodo = () => {
+    fetchTask();
+  };
+
   useEffect(() => {
-    fetchTask()
-  }, [])
+    fetchTask();
+  }, []);
 
   return (
-    <div>
+    <div className="space-y-3">
       <h1 className="text-xl font-semibold">Lista de Tarefas</h1>
-      <TodoForm />
-      {todos.map((item) => (
-        <TodoList key={item.id} />
-      ))}
+      <TodoForm onAdd={add} />
+      <div>
+        {todos.map((item) => (
+          <TodoList
+            key={item.id}
+            id={item.id}
+            description={item.description}
+            onDelete={deleteTodo}
+            completed={item.completed}
+          />
+        ))}
+      </div>
     </div>
   );
 };

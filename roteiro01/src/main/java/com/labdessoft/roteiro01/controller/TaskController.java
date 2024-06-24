@@ -27,7 +27,7 @@ public class TaskController {
         if (tasks.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-        tasks.forEach(task -> task.setDescription(task.getDescription() + " - Status: " + taskService.calculateStatus(task)));
+        tasks.forEach(task -> task.setDescription(task.getDescription()));
         return new ResponseEntity<>(tasks, HttpStatus.OK);
     }
 
